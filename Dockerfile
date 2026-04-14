@@ -1,0 +1,10 @@
+FROM haproxy:alpine
+
+USER root
+RUN chown -R node:node /home/node/
+
+USER node
+WORKDIR /home/node/app
+ENV HOME=/home/node
+
+CMD ["sh"]

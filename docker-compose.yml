@@ -1,0 +1,17 @@
+services:
+  haproxy:
+    build:
+      context: .
+    tty: true
+    ports:
+      - "443:443"
+    volumes:
+      - ./haproxy.cfg:/etc/haproxy/haproxy.cfg:ro
+      - ./cloudflare_ips.txt:/etc/haproxy/cloudflare_ips.txt:ro
+    networks:
+      - shared
+
+networks:
+  shared:
+    external: true
+    name: shared_network
